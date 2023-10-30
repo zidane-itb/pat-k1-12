@@ -1,4 +1,4 @@
-# Client App
+# Payment App
 
 ## API Docs
 
