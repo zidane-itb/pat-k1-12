@@ -6,6 +6,12 @@ spring:
     username: user
   kafka:
     bootstrap-servers: localhost:9092
+  data:
+    rest:
+      detection-strategy: annotated
+      base-path: v1
+    jpa:
+      show-sql: true
 
 server:
   port: 8081

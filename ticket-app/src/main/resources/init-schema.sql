@@ -12,7 +12,7 @@ CREATE TABLE ticket
     event_id      INTEGER       NOT NULL REFERENCES event(event_id),
     seat_id       INTEGER      NOT NULL,
     seat_price    DOUBLE PRECISION NOT NULL,
-    ticket_status VARCHAR(255) NOT NULL,
+    ticket_status VARCHAR(255) NOT NULL DEFAULT 'OPEN',
     CONSTRAINT pk_ticket PRIMARY KEY (ticket_id)
 );
 

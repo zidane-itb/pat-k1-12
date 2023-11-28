@@ -4,11 +4,13 @@ import id.co.pat.ticketapp.model.Ticket;
 import id.co.pat.ticketapp.model.enums.TicketStatus;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@RepositoryRestResource(collectionResourceRel = "ticket", path= "ticket")
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
 
     @Query(value = "SELECT * FROM ticket WHERE (ticket_status = 'OPEN' or ticket_status = 'ON_GOING') AND event_id = :eventId",
