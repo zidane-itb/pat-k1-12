@@ -3,22 +3,27 @@
 
 NIM | Nama
 --- | --- 
-13520XXX | Nama 1
-13520XXX | Nama 2
+13520163 | Zidane Firzatullah
 
 ---
 
 ## Client App
 System Entity | Tech
 --- | --- 
-API Server | Nama stack yang digunakan untuk API Server
-Database | Nama stack yang digunakan untuk DB
-??? | Untuk hal lain (MQ/Cache/dkk)
+API Server | Java 21, Spring Boot
+Database | PostgreSQL
+MQ | Apache Kafka with ZooKeeper
 
 
 ## Ticket App
 System Entity | Tech
 --- | --- 
-API Server | Nama stack yang digunakan untuk API Server
-Database | Nama stack yang digunakan untuk DB
-??? | Untuk hal lain (MQ/Cache/dkk)
+API Server | Java 21, Spring Boot
+Database | PostgreSQL
+MQ | Apache Kafka with ZooKeeper
+
+## Payment App
+System Entity | Tech
+--- | --- 
+API Server | Java 21, Spring Boot
+Database | PostgreSQL
