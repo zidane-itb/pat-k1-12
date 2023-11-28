@@ -11,12 +11,13 @@ import java.util.Optional;
 
 public interface TicketRepository extends CrudRepository<Ticket, Long> {
 
-    @Query(value = "SELECT * FROM ticket WHERE ticket_status = 'OPEN' AND event_id = :eventId",
+    @Query(value = "SELECT * FROM ticket WHERE (ticket_status = 'OPEN' or ticket_status = 'ON_GOING') AND event_id = :eventId",
             nativeQuery = true)
     List<Ticket> findAvailableTickets(long eventId);
 
     Optional<Ticket> findByIdAndTicketStatus(long id, TicketStatus status);
-    @Query(value = "select EXISTS(SELECT * FROM ticket WHERE event_id = :eventId AND ticket_id = :id and ticket_status = 'OPEN')",
+    @Query(value = "select EXISTS(SELECT * FROM ticket WHERE event_id = :eventId AND ticket_id = :id " +
+            "and (ticket_status = 'OPEN' or ticket_status = 'ON_GOING'))",
             nativeQuery = true)
     boolean existsByIdAndEventIdAndOpen(long id, long eventId);
 

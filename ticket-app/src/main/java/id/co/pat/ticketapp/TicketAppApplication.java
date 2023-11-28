@@ -20,14 +20,16 @@ public class TicketAppApplication {
 
 	@Autowired
 	public void populate(TicketRepository ticketRepository) {
-		Ticket ticket1 = Ticket.builder()
-				.eventId(1L)
-				.seatId(1)
-				.price(2000)
-				.ticketStatus(TicketStatus.OPEN)
-				.build();
+		for (int i = 0; i < 50; ++i) {
+			Ticket ticket1 = Ticket.builder()
+					.eventId(1L)
+					.seatId(1)
+					.price(2000)
+					.ticketStatus(TicketStatus.OPEN)
+					.build();
 
-		ticketRepository.save(ticket1);
+			ticketRepository.save(ticket1);
+		}
 	}
 
 }

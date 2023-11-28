@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: user
+    url: jdbc:postgresql://localhost:9000/db
+    username: user
+  data:
+    rest:
+      detection-strategy: annotated
+      base-path: v1
+    jpa:
+      show-sql: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          rest: DEBUG
+
+app:
+  config:
+    kafka:
+      booking-status-topic: booking-status
+      consumer-group: g-1

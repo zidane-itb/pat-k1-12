@@ -9,7 +9,7 @@ CREATE TABLE event
 CREATE TABLE ticket
 (
     ticket_id     SERIAL       NOT NULL,
-    event_id      BIGINT       NOT NULL REFERENCES event(event_id),
+    event_id      INTEGER       NOT NULL REFERENCES event(event_id),
     seat_id       INTEGER      NOT NULL,
     seat_price    DOUBLE PRECISION NOT NULL,
     ticket_status VARCHAR(255) NOT NULL,
@@ -19,16 +19,16 @@ CREATE TABLE ticket
 CREATE TABLE invoice
 (
     id             SERIAL       NOT NULL,
-    ticket_id      BIGINT       NOT NULL,
+    ticket_id      INTEGER       NOT NULL,
     invoice_status VARCHAR(255) NOT NULL,
-    invoice_number BIGINT       NOT NULL,
+    invoice_number INTEGER       NOT NULL,
     CONSTRAINT pk_invoice PRIMARY KEY (id)
 );
 
 CREATE TABLE queue
 (
     id           SERIAL NOT NULL,
-    ticket_id    BIGINT NOT NULL references ticket(ticket_id),
+    ticket_id    INTEGER NOT NULL references ticket(ticket_id),
     queue_status VARCHAR(255)                            NOT NULL,
     CONSTRAINT pk_queue PRIMARY KEY (id)
 );

@@ -10,8 +10,10 @@ CREATE TABLE account
 CREATE TABLE ticket_booking_history
 (
     ticket_booking_history_id SERIAL     NOT NULL,
-    ticket_id                 VARCHAR(50)                             NOT NULL,
+    ticket_id                 INTEGER                            NOT NULL,
     booking_status            VARCHAR(50) DEFAULT 'WAITING'           NOT NULL,
-    account_id                BIGINT references account(account_id),
+    account_id                INTEGER references account(account_id),
+    hold_response               VARCHAR(500) NOT NULL,
+    pdf_name                varchar(250),
     CONSTRAINT pk_ticket_booking_history PRIMARY KEY (ticket_booking_history_id)
 );

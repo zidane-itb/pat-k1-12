@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Map;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,4 +22,6 @@ public class KafkaBookingStatus {
     private boolean success;
     @JsonProperty("invoice-file-name")
     private String invoiceFileName;
+    @JsonProperty("new-invoice")
+    private HoldTicketResponse newInvoice;
 }

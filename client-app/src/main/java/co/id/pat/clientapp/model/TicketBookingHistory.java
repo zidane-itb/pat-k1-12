@@ -35,5 +35,9 @@ public class TicketBookingHistory {
     private BookingStatus bookingStatus;
     @Column(name = "account_id")
     private Long accountId;
+    @Column(name = "hold_response")
+    private String holdResponse;
+    @Column(name = "pdfName")
+    private String pdfName;
 
 }

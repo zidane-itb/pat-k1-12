@@ -50,6 +50,9 @@ public class PaymentServiceImpl implements PaymentService {
         if (invoice.getInvoiceStatus().equals(InvoiceStatus.PAID)) {
             throw new BadRequestException("Payment already paid");
         }
+        if (invoice.getInvoiceStatus().equals(InvoiceStatus.FAILED)) {
+            throw new BadRequestException("Payment failed");
+        }
 
         double probability = 0.1;
         double randomValue = Math.random();

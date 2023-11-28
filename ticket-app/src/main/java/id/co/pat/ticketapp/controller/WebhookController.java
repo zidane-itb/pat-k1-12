@@ -1,5 +1,6 @@
 package id.co.pat.ticketapp.controller;
 
+import id.co.pat.ticketapp.dto.HoldTicketResponse;
 import id.co.pat.ticketapp.dto.KafkaBookingStatus;
 import id.co.pat.ticketapp.dto.PaymentWebhookRequest;
 import id.co.pat.ticketapp.model.Invoice;
@@ -42,19 +43,25 @@ public class WebhookController {
 
         Invoice invoice = invoiceService.getInvoice(invoiceId).get();
         InvoiceStatus newInvoiceStatus = success ? InvoiceStatus.PAID : InvoiceStatus.FAILED;
-        TicketStatus newTicketStatus = success ? TicketStatus.BOOKED : TicketStatus.OPEN;
 
         Long ticketId = invoice.getTicketId();
-        ticketService.updateTicketStatus(ticketId, newTicketStatus);
         invoiceService.updateInvoiceStatus(invoiceId, newInvoiceStatus);
+
+        HoldTicketResponse newInvoice = null;
+        if (success) {
+            ticketService.updateTicketStatus(ticketId, TicketStatus.BOOKED);
+        } else {
+            newInvoice = ticketService.handleFailedInvoice(ticketId, invoiceId);
+        }
 
         KafkaBookingStatus kafkaBookingStatus = KafkaBookingStatus.builder()
                 .ticketId(ticketId)
                 .success(success)
                 .invoiceFileName("placeholder.txt")
+                .newInvoice(newInvoice)
                 .build();
-//
-//        kafkaTemplate.send(bookingTopic, kafkaBookingStatus);
+
+        kafkaTemplate.send(bookingTopic, kafkaBookingStatus);
         return ResponseEntity.ok().body(true);
     }
 
