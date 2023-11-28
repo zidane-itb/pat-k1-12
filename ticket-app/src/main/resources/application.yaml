@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: user
+    url: jdbc:postgresql://localhost:9001/db
+    username: user
+  kafka:
+    bootstrap-servers: localhost:9092
+
+server:
+  port: 8081
+
+app:
+  config:
+    page-size: 10
+    kafka:
+      booking-status-topic: booking-status

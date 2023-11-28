@@ -1,0 +1,42 @@
+version: "3.1"
+
+services:
+
+  db-client:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres
+    restart: always
+    ports:
+      - "9000:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+      - POSTGRES_DB=db
+    volumes:
+      - client-db-vol:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready -U user -d db"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+    networks:
+      - local-bridge
+
+  client-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db-client:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - local-bridge
+
+volumes:
+  client-db-vol:
+networks:
+  local-bridge:
+    driver: bridge

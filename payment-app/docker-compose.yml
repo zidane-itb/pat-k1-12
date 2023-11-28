@@ -1,0 +1,42 @@
+version: "3.1"
+
+services:
+
+  db-payment:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres
+    restart: always
+    ports:
+      - "9002:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=user
+      - POSTGRES_DB=db
+    volumes:
+      - payment-db-vol:/var/lib/postgresql/data
+    healthcheck:
+      test: "pg_isready -U user -d db"
+      interval: 2s
+      timeout: 3s
+      retries: 5
+    networks:
+      - local-bridge
+
+  payment-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      db-payment:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+    networks:
+      - local-bridge
+
+volumes:
+  payment-db-vol:
+networks:
+  local-bridge:
+    driver: bridge
