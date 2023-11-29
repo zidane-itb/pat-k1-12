@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface TicketBookingHistoryRepository extends CrudRepository<TicketBookingHistory, Long> {
     @Query(value = "SELECT * FROM ticket_booking_history WHERE ticket_id = :ticketId " +
-            "AND booking_status = 'WAITING' LIMIT 1",
+            "AND booking_status = 'WAITING' LIMIT 1 ORDER BY ticket_booking_history_id ASC",
             nativeQuery = true)
     Optional<TicketBookingHistory> findFirstByTicketIdAndStatusWaiting(Long ticketId);
     @Query(value = "SELECT * FROM ticket_booking_history WHERE ticket_id = :ticketId " +
@@ -19,7 +19,7 @@ public interface TicketBookingHistoryRepository extends CrudRepository<TicketBoo
 
     @Query(value = "SELECT * FROM ticket_booking_history WHERE ticket_id = :ticketId " +
             "AND ticket_booking_history_id <> :id " +
-            "and booking_status = 'WAITING' ORDER BY ticket_booking_history_id LIMIT 1",
+            "and booking_status = 'WAITING' ORDER BY ticket_booking_history_id ASC LIMIT 1",
             nativeQuery = true)
     Optional<TicketBookingHistory> findFirstByTicketIdAndNotEqualToIdAndWaiting(Long ticketId, Long id);
 }
