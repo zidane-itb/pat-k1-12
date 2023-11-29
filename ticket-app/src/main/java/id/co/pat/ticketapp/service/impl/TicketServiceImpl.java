@@ -18,7 +18,6 @@ import id.co.pat.ticketapp.service.impl.feign.FeignPayment;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -128,6 +127,14 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = ticketOptional.get(); Invoice prevInvoice = invoiceOptional.get();
         prevInvoice.setInvoiceStatus(InvoiceStatus.FAILED);
         invoiceRepository.save(prevInvoice);
+
+        Optional<Queue> waitingQOptional = queueRepository
+                .findFirstByTicketIdAndQueueStatus(ticketId, QueueStatus.ONGOING);
+        if (waitingQOptional.isPresent()) {
+            Queue waitingQ = waitingQOptional.get();
+            waitingQ.setQueueStatus(QueueStatus.FAILED);
+            queueRepository.save(waitingQ);
+        }
 
         Optional<Queue> currentQOptional = queueRepository
                 .findFirstByTicketIdAndQueueStatus(ticketId, QueueStatus.WAITING);
