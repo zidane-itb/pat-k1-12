@@ -2,25 +2,19 @@
 
 ## API Docs
 
-Dokumentasi ini tidak strict, silahkan ubah sesuai yang diinginkan, yang penting ada terdokumentasi interface dari masing2 app
+API yang didefinisikan disini adalah endpoint yang tidak boleh diakses secara langsung, seperti melakukan API call pada Postman. Sisanya boleh dilihat di dokumentasi Postman.
 
 ### HTTP APIs
 
-| HTTP Method | Endpoint   | Description              |
-| ----------- | ---------- | ------------------------ |
-| GET         | /v1/health | Get service health check |
-| GET         | /v1/todos  | Get list of todos        |
-
-### GRPC APIs
-
-| Method                               | Return  | Description       |
-| ------------------------------------ | ------- | ----------------- |
-| GetAllTodos(page int, search string) | [ ]Todo | Get list of todos |
+| HTTP Method  | Endpoint                               | Description                                |
+| -----------  | ----------                             | ------------------------                   |
+| POST         | /v1/ticket/status-webhook              | Webhook update status dari Payment service |
+| POST         | /v1/event/{eventId}/ticket/{ticketId}  | Melakukan hold tiket (dari client service) |
 
 ## How To Start
 
-Jelaskan step by step cara menjalankan kode dari service ini, misal:
+1. Ensure port 40000-40009, 20-21, 9092, 9001, 8081 is not used and exposed
+2. Run `docker compose up --build -d`
 
-1. Ensure port X, Y, Z is not used and exposed
-2. Run `docker-compose -f docker-compose-dev.yml up`
-3. Hit http://localhost:X/health and see if it returns properly
+## Migration and Seeding
+Ketika docker compose dijalankan, script DDL akan otomatis diexecute. Spring boot service juga akan secara otomatis melakukan injeksi data setiap kali service dinyalakan.
