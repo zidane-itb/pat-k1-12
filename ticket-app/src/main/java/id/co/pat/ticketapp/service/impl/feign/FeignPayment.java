@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "payment-app", url = "http://localhost:8082")
+@FeignClient(name = "payment-app", url = "http://payment-app:8082")
 @Component
 public interface FeignPayment {
 

@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "ticket-app", url = "http://localhost:8081")
+@FeignClient(name = "ticket-app", url = "http://ticket-app:8081")
 @Component
 public interface FeignTicket {
 
-    @PostMapping("/v1/ticket/status-webhook")
+    @PostMapping("${app.config.webhook-url}")
     void postPaymentStatus(@RequestBody PaymentWebhookRequest paymentWebhookRequest);
 
 }

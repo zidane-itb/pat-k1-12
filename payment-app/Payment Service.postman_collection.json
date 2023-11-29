@@ -1,11 +1,51 @@
 {
 	"info": {
-		"_postman_id": "2e5d6f93-dba1-4c56-b6cc-0438560f6aa4",
-		"name": "Ticket Service",
-		"description": "Documentation for ticket service. Please utilize collection variables to make your life easier.",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29903624",
-		"_collection_link": "https://lunar-station-394524.postman.co/workspace/APKS~5aae23c6-6220-492b-80df-d5581b595946/collection/29903624-2e5d6f93-dba1-4c56-b6cc-0438560f6aa4?action=share&source=collection_link&creator=29903624"
+		"_postman_id": "03cb6e09-7603-45f6-85ef-86581263d6b4",
+		"name": "Payment Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17061817"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "Pay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "localhost:8082/v1/payment/50/_pay"
+			},
+			"response": [
+				{
+					"name": "paid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": "localhost:8082/v1/payment/50/_pay"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Nov 2023 10:57:46 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"errMessage\": \"Payment already paid\"\n}"
+				}
+			]
+		}
+	]
 }

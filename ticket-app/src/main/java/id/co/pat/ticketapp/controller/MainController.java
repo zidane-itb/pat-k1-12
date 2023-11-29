@@ -26,6 +26,12 @@ public class MainController {
 
     @GetMapping("/v1/event")
     public ResponseEntity<List<EventResponse>> getOnGoingEvents() {
+        double probability = 0.2;
+        double randomValue = Math.random();
+        if (randomValue < probability) {
+            return ResponseEntity.internalServerError().body(null);
+        }
+
         return ResponseEntity.ok()
                 .body(eventService.getOnGoingEvents());
     }
@@ -35,6 +41,13 @@ public class MainController {
         if (!eventService.checkEventExists(eventId)) {
             return ResponseEntity.badRequest().body(null);
         }
+
+        double probability = 0.2;
+        double randomValue = Math.random();
+        if (randomValue < probability) {
+            return ResponseEntity.internalServerError().body(null);
+        }
+
         List<TicketResponse> tickets = ticketService.getEventAvailableTickets(eventId);
         return ResponseEntity.ok()
                 .body(tickets);
@@ -46,6 +59,12 @@ public class MainController {
         if (!ticketService.checkTicketEligibility(ticketId, eventId)) {
             log.info("ticket not eligible, with event id: {} and ticket id: {}", eventId, ticketId);
             return ResponseEntity.badRequest().body(null);
+        }
+
+        double probability = 0.2;
+        double randomValue = Math.random();
+        if (randomValue < probability) {
+            return ResponseEntity.internalServerError().body(null);
         }
 
         HoldTicketResponse holdTicketResponse = ticketService.holdTicketAndGetInvoiceNumber(ticketId);

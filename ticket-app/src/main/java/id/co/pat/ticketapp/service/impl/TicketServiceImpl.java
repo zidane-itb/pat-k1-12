@@ -163,4 +163,9 @@ public class TicketServiceImpl implements TicketService {
                 .build();
     }
 
+    @Override
+    public Optional<Ticket> findTicketById(long ticketId) {
+        return ticketRepository.findById(ticketId);
+    }
+
 }

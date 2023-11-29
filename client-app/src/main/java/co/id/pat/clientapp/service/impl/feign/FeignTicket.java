@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(name = "ticket-app", url = "http://localhost:8081")
+@FeignClient(name = "ticket-app", url = "http://ticket-app:8081")
 @Component
 public interface FeignTicket {
 

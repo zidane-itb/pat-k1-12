@@ -34,14 +34,15 @@ public class MainController {
         return ResponseEntity.ok(eventAndTicketService.getAvailableTickets(eventId));
     }
 
-    @PostMapping("/v1/client/event/{eventId}/ticket/{ticketId}")
+    @PostMapping("/v1/client/event/{eventId}/ticket/{ticketId}/{accountId}")
     public ResponseEntity<HoldTicketResponse> holdATicket(@PathVariable("eventId") long eventId,
-                                                          @PathVariable("ticketId") long ticketId) {
-        return ResponseEntity.ok(eventAndTicketService.holdATicket(eventId, ticketId));
+                                                          @PathVariable("ticketId") long ticketId,
+                                                          @PathVariable("accountId") long accountId) {
+        return ResponseEntity.ok(eventAndTicketService.holdATicket(eventId, ticketId, accountId));
     }
 
     @GetMapping(value = "/v1/client/booking/{bookingId}", produces = "application/json")
-    public ResponseEntity<String> holdATicket(@PathVariable("bookingId") long bookingId) {
+    public ResponseEntity<String> findBookingStatus(@PathVariable("bookingId") long bookingId) {
         Optional<TicketBookingHistory> historyOptional = ticketBookingService.findById(bookingId);
         if (historyOptional.isEmpty()) {
             return ResponseEntity.badRequest().body("booking id does not exist.");

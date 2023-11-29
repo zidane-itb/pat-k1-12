@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: user
-    url: jdbc:postgresql://localhost:9000/db
+    url: jdbc:postgresql://db-client:5432/db
     username: user
   data:
     rest:
@@ -11,7 +11,7 @@ spring:
     jpa:
       show-sql: true
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka1:19092
     consumer:
       properties:
         spring.json.trusted.packages: "*"
@@ -28,3 +28,9 @@ app:
     kafka:
       booking-status-topic: booking-status
       consumer-group: g-1
+    ftp:
+      server: ftp-server
+      username: user
+      password: 123
+      download:
+        directory: /opt/mdw/static/

@@ -32,11 +32,17 @@ services:
         condition: service_healthy
     ports:
       - "8080:8080"
+    volumes:
+      - client-static:/opt/mdw/static
     networks:
       - local-bridge
+      - pat-peering-bridge
 
 volumes:
   client-db-vol:
+  client-static:
 networks:
   local-bridge:
     driver: bridge
+  pat-peering-bridge:
+    external: true

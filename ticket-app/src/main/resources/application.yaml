@@ -2,10 +2,10 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: user
-    url: jdbc:postgresql://localhost:9001/db
+    url: jdbc:postgresql://db-ticket:5432/db
     username: user
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka1:19092
   data:
     rest:
       detection-strategy: annotated
@@ -21,3 +21,7 @@ app:
     page-size: 10
     kafka:
       booking-status-topic: booking-status
+    ftp:
+      server: ftp-server
+      username: user
+      password: 123

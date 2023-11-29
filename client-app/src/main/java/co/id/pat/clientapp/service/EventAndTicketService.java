@@ -10,6 +10,6 @@ public interface EventAndTicketService {
 
     List<EventResponse> getEvents();
     List<TicketResponse> getAvailableTickets(long eventId);
-    HoldTicketResponse holdATicket(long eventId, long ticketId);
+    HoldTicketResponse holdATicket(long eventId, long ticketId, long accountId);
 
 }

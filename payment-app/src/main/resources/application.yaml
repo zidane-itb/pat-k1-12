@@ -2,12 +2,15 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: user
-    url: jdbc:postgresql://localhost:9002/db
+    url: jdbc:postgresql://db-payment:5432/db
     username: user
+  cloud:
+    openfeign:
+      lazy-attributes-resolution: true
 
 server:
   port: 8082
 
 app:
   config:
-    webhook-url: /v1/webhook
+    webhook-url: /v1/ticket/status-webhook

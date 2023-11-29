@@ -34,9 +34,12 @@ services:
       - "8082:8082"
     networks:
       - local-bridge
+      - pat-peering-bridge
 
 volumes:
   payment-db-vol:
 networks:
   local-bridge:
     driver: bridge
+  pat-peering-bridge:
+    external: true
