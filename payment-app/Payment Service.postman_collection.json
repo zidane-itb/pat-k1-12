@@ -46,6 +46,51 @@
 					"body": "{\n    \"errMessage\": \"Payment already paid\"\n}"
 				}
 			]
+		},
+		{
+			"name": "Get Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8082/v1/payment/50"
+			},
+			"response": [
+				{
+					"name": "paid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:8082/v1/payment/50"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Nov 2023 11:44:41 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"PAID\",\n    \"annotation\": null\n}"
+				}
+			]
 		}
 	]
 }
